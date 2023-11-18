@@ -1,0 +1,5 @@
+Avoid Global Variables if Not Needed:
+Consider whether using a global variable is necessary. In some cases, it might be better to encapsulate the variable within a function or a data structure to avoid global namespace pollution.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed posuere tellus at ligula cursus, eget condimentum arcu tincidunt. Fusce et arcu nec velit tincidunt bibendum. Phasellus tincidunt eleifend metus, vel congue urna elementum eu. Quisque vel risus a metus vestibulum accumsan non non justo. Etiam fringilla nisl et feugiat fringilla. In hac habitasse platea dictumst. Suspendisse potenti. Duis non justo et dui gravida vulputate.
+Aenean ut ex vel metus viverra semper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut id erat massa. Integer eu dolor vel mi facilisis tincidunt non vel odio. Ut in elit sagittis, fringilla odio vel, mattis elit. Integer consectetur ante vitae lacus dapibus, id efficitur ipsum euismod
