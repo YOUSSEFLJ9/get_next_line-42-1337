@@ -6,82 +6,98 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 00:32:39 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/18 17:39:24 by ymomen           ###   ########.fr       */
+/*   Updated: 2023/11/22 15:20:46 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
-static char	*alloc_totalen(char *s1, char *s2, size_t *totlen)
+static char	*alloc_totalen(char *line, char *buf, int *totlen)
 {
-	size_t	s1l;
-	size_t	s2l;
+	int	line_len;
+	int	buf_len;
 	char	*newstr;
 
-	s1l = 0;
-	s2l = 0;
+	buf_len = 0;
+	line_len = 0;
 	*totlen = 0;
-	if (!s1 && !s2)
+	if (!line && !buf)
 		return (NULL);
-	if (s1)
-		s1l = ft_strlen(s1);
-	if (s2)
-		s2l = ft_strlen(s2);
-	*totlen = s1l + s2l;
-	newstr = (char *) malloc(totlen + 1);
+	if (line)
+		line_len = ft_strlen(line);
+	buf_len = ft_strlen(buf);
+	*totlen = line_len + buf_len;
+	newstr = (char *) malloc(*totlen + 1);
 	if (!newstr)
 		return (NULL);
 	return (newstr);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *line, char *buf)
 {
-	size_t	i;
-	size_t	count;
+	int		i;
+	int		count;
 	char	*newstr;
-	size_t	totlen;
+	int		totlen;
 
 	i = 0;
 	count = 0;
-	newstr = alloc_totalen(s1, s2, &totlen);
-	while (s1[count] && totlen > count)
+	newstr = alloc_totalen(line, buf, &totlen);
+	if (!newstr)
+		return(free_it(line),NULL);
+	while (line && line[count] && totlen > count)
 	{
-		newstr[count] = s1[count];
+		newstr[count] = line[count];
 		count++;
 	}
-	while (s2[i] && totlen > (count + i))
+	free_it(line);
+	while (buf[i] && totlen > count)
 	{
-		newstr[count + i] = s2[i];
-		i++;
+		newstr[count++] = buf[i++];
+		if(buf[i - 1] == '\n')
+			break ;
 	}
-	newstr[count + i] = '\0';
-	free(s1);
-	free(s2);
+	newstr[count] = '\0';
 	return (newstr);
 }
 
-size_t	ft_strchr( char *s, size_t readit)
+int	ft_strchr( char *s, int readit)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	while (s[i] && readit > i)
+	i = 1;
+	while (s[i - 1] || readit > i)
 	{
 		if (s[i] == '\n')
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1337);
+}
+void free_it(char *str)
+{
+	if (str)
+		free(str);
+	str = NULL;
+}
+
+void	shift(char *buf, int endl)
+{
+	int	i;
+
+	i = 0;
+	while (endl < BUFFER_SIZE && buf[endl])
+		buf[i++] = buf [endl++];
+	while (i < endl)
+		buf[i++] = 0;
 }
