@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 00:32:33 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/22 17:45:11 by ymomen           ###   ########.fr       */
+/*   Created: 2023/11/22 18:00:32 by ymomen            #+#    #+#             */
+/*   Updated: 2023/11/22 18:01:01 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H 
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif

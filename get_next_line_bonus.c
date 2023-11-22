@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 00:32:36 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/22 17:59:34 by ymomen           ###   ########.fr       */
+/*   Created: 2023/11/22 17:59:42 by ymomen            #+#    #+#             */
+/*   Updated: 2023/11/22 23:13:06 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	free_it(char *str)
 {
@@ -56,15 +56,14 @@ char	*read_and_getline(char *buf, int fd, char *line)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_v1(int fd, char *buf)
 {
-	static char	buf[BUFFER_SIZE + 1];
 	char		*line;
 	int			endl;
 
 	line = NULL;
 	endl = 0;
-	if ((read(fd, buf, 0) == -1) || (OPEN_MAX < fd || fd < 0))
+	if ((read(fd, buf, 0) == -1))
 		return (shift(buf, BUFFER_SIZE), NULL);
 	if (*buf != 0)
 	{
@@ -78,4 +77,13 @@ char	*get_next_line(int fd)
 			return (shift(buf, endl), line);
 	}
 	return (read_and_getline(buf, fd, line));
+}
+
+char *get_next_line(int fd)
+{
+	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
+
+	if (fd > OPEN_MAX || fd <= -1)
+		return (NULL);
+	return (get_next_line_v1(fd, buf[fd]));
 }
