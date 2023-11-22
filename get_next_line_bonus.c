@@ -79,7 +79,7 @@ char	*get_next_line_v1(int fd, char *buf)
 	return (read_and_getline(buf, fd, line));
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
 
